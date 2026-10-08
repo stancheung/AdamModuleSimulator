@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>GoAdam Web</title>
+    <link rel="stylesheet" href="/assets/style.css"/>
+    <script src="/assets/htmx.min.js" defer></script>
+</head>
+<body>
+<div id="app">
+    <header class="bar">
+        <div class="container">
+            <select id="adamSelect" name="model" class="select">
+                <option value="6050">ADAM-6050</option>
+                <option value="6060">ADAM-6060</option>
+            </select>
+            {{template "listenbtn.html" .}}
+        </div>
+        <span id="status" class="status {{.Kind}}" hx-get="/fragments/status" hx-trigger="every 2s"
+              hx-swap="outerHTML">{{.Text}}</span>
+    </header>
+
+    <main class="panels">
+        <section class="panel">
+            <div id="ioBtn" class="grid" hx-get="/fragments/coils" hx-include="#adamSelect"
+                 hx-trigger="every 250ms, change from:#adamSelect" hx-swap="innerHTML"></div>
+        </section>
+    </main>
+
+    <footer class="legend">
+        <span class="key"><i class="swatch on"></i>ON</span>
+        <span class="key"><i class="swatch off"></i>OFF</span>
+        <span class="hint">Click a point to force it</span>
+    </footer>
+</div>
+</body>
+</html>

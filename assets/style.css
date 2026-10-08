@@ -1,0 +1,238 @@
+:root {
+    --bg: #1b2636;
+    --panel: #223046;
+    --edge: #2f4059;
+    --text: #e6edf6;
+    --muted: #8ba0bb;
+    --on: #f5c451;
+    --off: #33445c;
+    --bad: #ff7a7a;
+    --warn: #f5c451;
+}
+
+html {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+body {
+    margin: 0;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""),
+    url("fonts/nunito-v16-latin-regular.woff2") format("woff2");
+}
+
+#app {
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 24px;
+}
+
+.container {
+    display: flex;
+    gap: 10px; /* Adds space between items */
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.select {
+    font: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--edge);
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+.btn {
+    font: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--panel);
+    border: 1px solid var(--edge);
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    color: var(--muted);
+    cursor: default;
+}
+
+.status {
+    margin-left: auto;
+    font-size: 12px;
+    padding: 5px 12px;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.status.ok {
+    color: var(--on);
+    border-color: rgba(53, 208, 127, 0.4);
+}
+
+.status.bad {
+    color: var(--bad);
+    border-color: rgba(255, 122, 122, 0.4);
+}
+
+.status.warn {
+    color: var(--warn);
+    border-color: rgba(245, 196, 81, 0.4);
+}
+
+.panels {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--edge);
+    border-radius: 10px;
+    padding: 18px 20px;
+}
+
+.grid {
+    --cell: clamp(44px, min(10vw, 11.5vh), 110px);
+    display: grid;
+    grid-template-rows: repeat(6, var(--cell));
+    grid-auto-flow: column;
+    grid-auto-columns: var(--cell);
+    gap: clamp(8px, 1.6vmin, 16px);
+}
+
+.io-btn {
+    border-radius: 50%;
+    border: 1px dashed var(--edge);
+    background: var(--off);
+    color: var(--muted);
+    font: inherit;
+    font-size: clamp(11px, calc(var(--cell) / 4.6), 15px);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.io-btn:focus-visible {
+    outline: 2px solid #7aa7ff;
+    outline-offset: 2px;
+}
+
+.io-btn.on {
+    background: var(--on);
+    border-style: solid;
+    border-color: var(--on);
+    color: #06301c;
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: auto;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.key {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.swatch.on {
+    background: var(--on);
+}
+
+.swatch.off {
+    background: var(--off);
+    border: 1px dashed var(--edge);
+}
+
+.hint {
+    margin-left: auto;
+}
+
+.io-btn,
+.btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 600px) {
+    #app {
+        min-height: 100dvh;
+        padding: 12px 14px;
+        gap: 14px;
+    }
+
+    .bar {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .select,
+    .btn {
+        font-size: 16px;
+    }
+
+    .status {
+        margin-left: 0;
+        white-space: normal;
+    }
+
+    .panels {
+        justify-content: center;
+    }
+
+    .grid {
+        --cell: clamp(44px, min(26vw, calc((100dvh - 280px) / 6)), 110px);
+    }
+
+    .legend {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 18px;
+    }
+
+    .hint {
+        margin-left: 0;
+    }
+}

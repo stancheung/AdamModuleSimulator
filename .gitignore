@@ -1,0 +1,7 @@
+# Build artifacts
+goadamweb
+goadamweb.exe
+
+# Go
+*.test
+*.out

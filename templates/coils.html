@@ -1,0 +1,5 @@
+{{range .}}
+<button type="button" class="io-btn {{if .On}}on{{else}}off{{end}}" aria-pressed="{{.On}}"
+        hx-post="/coils/{{.Idx}}/{{if .On}}off{{else}}on{{end}}" hx-swap="none"
+        hx-trigger="pointerdown, keyup[keyIsEnter]">{{.Label}}</button>
+{{end}}
