@@ -56,9 +56,9 @@ func main() {
 	}
 	identity := &moduleIdentity{
 		Name:     *modName,
-		Desc:     "GoAdamWeb sim",
+		Desc:     "AdamModuleSimulator sim",
 		DevID:    [2]byte{0x60, 0x50}, // ADAM-6050
-		FwVer:    "4.02", // < 5.x: utility skips flexible-modbus XML path
+		FwVer:    "4.02",              // < 5.x: utility skips flexible-modbus XML path
 		MAC:      detectMAC(ip),
 		IP:       ip,
 		Subnet:   "255.255.255.0",
@@ -84,7 +84,7 @@ func main() {
 	}
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", http.FileServer(http.FS(assets))))
 
-	log.Printf("GoAdam web panel on http://%s", *addr)
+	log.Printf("AdamModuleSimulator web panel on http://%s", *addr)
 	log.Fatal(http.ListenAndServe(*addr, mux))
 }
 

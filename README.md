@@ -1,4 +1,4 @@
-# GoAdamWeb
+# AdamModuleSimulator
 
 A pure-Go simulator of an Advantech **ADAM-6050** DI/DO module. It speaks the
 three protocols the official Advantech .NET utility and a browser expect, so

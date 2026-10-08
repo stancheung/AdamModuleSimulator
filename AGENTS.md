@@ -1,13 +1,14 @@
 # AGENTS.md
 
-Single-module Go app (`module goadamweb`, Go 1.27): a simulator of an Advantech
+Single-module Go app (`module AdamModuleSimulator`, Go 1.27): a simulator of an Advantech
 ADAM-6050 module (Modbus TCP server + web control panel + UDP discovery/ASCII
 emulation) so the Advantech .NET utility and browsers can talk to it.
 
 ## Commands
 
-- Build: `go build ./...` (output binary `goadamweb.exe` lands in the repo root;
-  `goadamweb`/`goadamweb.exe` are existing build artifacts, not source).
+- Build: `go build ./...` (output binary `AdamModuleSimulator.exe` lands in the
+  repo root; `AdamModuleSimulator`/`*.exe` are existing build artifacts, not
+  source).
 - Verify: `go vet ./...` and `gofmt -l .` — there is no lint/typecheck/test
   config, no CI, no Makefile, and no tests. If you add tests: `go test ./...`.
 - Run: `go run .` — flags: `-addr` (default `:5002`, web panel), `-ip`

@@ -1,6 +1,6 @@
 # Build artifacts
-goadamweb
-goadamweb.exe
+AdamModuleSimulator
+AdamModuleSimulator.exe
 
 # Go
 *.test
