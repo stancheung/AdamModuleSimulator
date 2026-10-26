@@ -59,3 +59,18 @@ emulation) so the Advantech .NET utility and browsers can talk to it.
   client; preserve them when refactoring.
 - Output goes to stdout via `fmt.Print*` for protocol events and `log` for
   HTTP — match the existing split.
+
+## Cursor Cloud specific instructions
+
+- The base image ships Go 1.22. This module sets `go 1.27`, and that compiler
+  reports `toolchain not available` instead of downloading Go 1.27. The
+  environment install unpacks Go 1.27.3 into `/usr/local/go` and symlinks `go`
+  and `gofmt` into `/usr/local/bin`, which login shells search before `/usr/bin`.
+- On boot, `start` sets `net.ipv4.ip_unprivileged_port_start` to 502 (kernel
+  state, not part of the disk snapshot) and runs `go run .`. The web panel is
+  already on port 5002. `http.ListenAndServe` exits if that port is taken, so
+  stop the existing process before starting another copy. Modbus TCP 502, UDP
+  discovery 5048, and UDP ASCII 1025 still treat bind failures as non-fatal.
+- DI0–DI11 power up ON and DO0–DO5 power up OFF. `curl -s
+  http://127.0.0.1:5002/fragments/status` reports the listener;
+  `POST /coils/12/on` forces DO0.
